@@ -47,18 +47,85 @@ public class Lab4_JeremytOsorto {
         correo=opc.next();
         
         for (int i=0; i<correo.length(); i++){
+            int cont2;
+            cont2=0;
             if (correo.charAt(i)=='@'){
                 cont=correo.substring(i, correo.length());
                 cont=cont.toLowerCase();
-                if (cont=="gmail.com" || cont=="outlook.com" || cont=="unitec.edu"){
+                if (cont.equals("@gmail.com") || cont.equals("@outlook.com") || cont.equals("@unitec.edu")){
                     System.out.println("correo valido");
                 }
                 else{
                     System.out.println("Correo no valido");
+                    
+                    if (correo.startsWith("g")){
+                        for (int j=0; j<correo.length();j++){
+                            char eq;
+                            eq=correo.charAt(i);
+                            switch (eq){
+                                case 'g':
+                                    cont2+=1;
+                                    break;
+                                case 'm':
+                                    cont2+=1;
+                                    break;
+                                case 'a':
+                                    cont2+=1;
+                                case 'i':
+                                    cont2+=1;
+                                    break;
+                                case 'l':
+                                    cont2+=1;
+                                    break;
+                                case '.':
+                                    cont2+=1;
+                                    break;
+                                case 'c':
+                                    cont2+=1;
+                                    break;
+                                case 'o':
+                                    cont2+=1;
+                                    break;
+                            }
+                        }
+                    }
+                    else if (correo.startsWith("o")){
+                        
+                    }
+                    System.out.println("tiene una similidad de: "+ (cont2/10));
+                    
                 }
             
             }
         }        
+    }
+    
+    public static void opc3(){
+        Scanner simil= new Scanner(System.in);
+        String cad, cad1, suma, sub;
+        
+        System.out.println("Ingrese una palabra o oración: ");
+        cad= simil.nextLine();
+        System.out.println("Ingrese una palabra sin espacios: ");
+        cad1= simil.next();
+        suma="";
+        
+        for (int i=0; i<cad1.length(); i++){
+            char sim, sim2;
+            sim=cad1.charAt(i);
+            for (int j=0; j<cad.length(); j++){
+                sim2=cad.charAt(j);
+                
+                if (sim==sim2){
+                    System.out.println("son iguales");
+                    suma += sim2;
+                    sub= cad.substring(0, i-1);
+                    cad=cad.replace(cad, "*");
+                }
+            }
+        }
+        System.out.println(suma); 
+        System.out.println(cad);
     }
     
     public static void main(String[] args) {
@@ -77,7 +144,13 @@ public class Lab4_JeremytOsorto {
                 opc2();
             }
             else if (resp1==3){
+                opc3();
             }
+            else{
+                System.out.println("Ingrese una opción del 1 al 3 :(");
+            }
+            System.out.println("Ingrese un número para iniciar el programa\n1- conversión de decimal-binario\n2- validar correos\n3- Formar palabras\nIngresar una opción: ");
+            resp1=resp.nextInt();
         }while(resp1!=4 && resp1<4);
     }
 }
